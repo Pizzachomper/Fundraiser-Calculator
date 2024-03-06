@@ -1,4 +1,6 @@
 import pandas
+
+# Functions go here
 # Checks users entered an integer to a given question
 def num_check(question, error, num_type):
 
@@ -15,6 +17,20 @@ def num_check(question, error, num_type):
         except ValueError:
             print("Please enter an integer")
             print()
+
+# Asks user a yes or no question
+def yes_no(question):
+    while True:
+        response = input(question).lower()
+
+        if response == "yes" or response == "y":
+            return "yes"
+
+        elif response == "no" or response == "n":
+            return "no"
+
+        else:
+            print("Please enter either yes or no")
 
 # Checks that user response is not blank
 def not_blank(question, error):
@@ -87,18 +103,23 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
         
 
-# Main routine
+# Main routine goes here
+want_instructions = yes_no("Do you want to read the instructions? ").lower()
+
+if want_instructions == "yes" or want_instructions == "y":
+    print("Instructions go here")
 
 # Get user data
 product_name = not_blank("Product name: ",
                         "The product name can't be blank.")
 
+# Get variable costs
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
 # Printing area
-print()
+print("*** Variable Costs ***")
 print(variable_frame)
 print()
 print(F"Variable Costs: ${variable_sub:.2f}")
