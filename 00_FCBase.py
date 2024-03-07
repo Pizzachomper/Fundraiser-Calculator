@@ -48,4 +48,5 @@ get_cost = num_check("How much does it cost? $",
 
 print()
 print(F"You need: {get_int}")
-print(F"It costs {get_cost}")
+print(F"It costs ${get_cost}")
+print(F"Total cost: ${get_int * get_cost}")

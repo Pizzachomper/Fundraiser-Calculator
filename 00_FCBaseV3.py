@@ -103,33 +103,60 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
         
 
+# Prints expense frames
+def expense_print(heading, frame, subtotal):
+    
+    # Printing area
+    print()
+    print(F"*** {heading} Costs ***")
+    print(frame)
+    print()
+    print(F"{heading} Costs: ${subtotal:.2f}")
+    return ""
+
 # Main routine goes here
 want_instructions = yes_no("Do you want to read the instructions? ").lower()
 
 if want_instructions == "yes" or want_instructions == "y":
+    print()
     print("Instructions go here")
+    print()
 
 # Get user data
 product_name = not_blank("Product name: ",
                         "The product name can't be blank.")
 
-# Get variable costs
-variable_expenses = get_expenses("variable")
-variable_frame = variable_expenses[0]
-variable_sub = variable_expenses[1]
-
-fixed_expenses = get_expenses("fixed")
-fixed_frame = fixed_expenses[0]
-fixed_sub = fixed_expenses[1]
-
-
-# Printing area
-print("*** Variable Costs ***")
-print(variable_frame)
+# Ask user for variable costs
 print()
-print(F"Variable Costs: ${variable_sub:.2f}")
+have_fixed = yes_no("Do you have variable costs?: ")
+
+if have_fixed == "yes" or have_fixed == "y":
+    # Get variable costs
+    variable_expenses = get_expenses("variable")
+    variable_frame = variable_expenses[0]
+    variable_sub = variable_expenses[1]
+
+else:
+    variable_sub = 0
+
 print()
-print("*** Fixed Costs ***")
-print(fixed_frame)
+have_fixed = yes_no ("Do you have fixed costs?: ")
+
+if have_fixed == "yes" or have_fixed == "y":
+    # Get fixed costs
+    fixed_expenses = get_expenses("fixed")
+    fixed_frame = fixed_expenses[0]
+    fixed_sub = fixed_expenses[1]
+
+else:
+    fixed_sub = 0
+
+# Ask user for profit goal
+
 print()
-print(F"Fixed Costs: ${fixed_sub:.2f}")
+print(F"*** Fund Raising - {product_name} ***")
+print()
+expense_print("Variable", variable_frame, variable_sub)
+
+if have_fixed == "yes":
+    expense_print("Fixed", fixed_frame [['Cost']], fixed_sub)
