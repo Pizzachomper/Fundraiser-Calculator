@@ -21,6 +21,7 @@ def num_check(question, error, num_type):
 def round_up(amount, round_to):
     return int(math.ceil(amount / round_to)) * round_to
 
+# Main routine
 how_many = num_check("How many items? ", "Cant be 0", int)
 total = num_check("Total costs? ", "More than 0", float)
 profit_goal = num_check("Profit Goal? ", "More than 0", float)
