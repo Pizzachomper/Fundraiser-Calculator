@@ -190,9 +190,13 @@ want_instructions = yes_no("Do you want to read the instructions? ").lower()
 
 if want_instructions == "yes" or want_instructions == "y":
     print()
-    print("Instructions go here")
+    print("--- Instructions ---")
     print()
-
+    print("The fundraising claculator can be used to find if you have reached a porfit goal ")
+    print("You will need to provide the product name, item name, quantity, price")
+    print("Fixed costs are also optional after you have finished your variable costs")
+    print()
+    
 # Get user data
 product_name = not_blank("Product name: ",
                         "The product name can't be blank.")
@@ -224,7 +228,7 @@ profit_target = profit_goal(all_costs)
 sales_needed = all_costs + profit_target
 
 # Ask user for rounding 
-round_to = num_check("Round to nearest ...?", "Cant be 0", int)
+round_to = num_check("Round to nearest ...?: ", "Cant be 0", int)
 
 # Calculate recommended price
 selling_price = sales_needed / how_many

@@ -15,23 +15,31 @@ fixed_dict = {
 variable_frame = pandas.DataFrame(variable_dict)
 fixed_frame = pandas.DataFrame(fixed_dict)
 
+# Change frames to string
+variable_txt = pandas.DataFrame.to_string(variable_frame)
+fixed_txt = pandas.DataFrame.to_string(fixed_frame)
+
 product_name = "Custom Mugs"
 profit_target = "$100.00"
 required_sales = "$200.00"
 recommended_price = "$5.00"
 
-print(variable_frame)
+to_write = [product_name, variable_txt, fixed_txt, profit_target, required_sales, recommended_price]
 
-# Change dataframe to string
-variable_txt = pandas.DataFrame.to_string(variable_frame)
-
-# Create file to hold data (add .txt extension)
+# Write to file
+# Create file to hold data
 file_name = F"{product_name}.txt"
 text_file = open(file_name, "w+")
 
 # Heading
-text_file.write(F"*** Fund Raising - {product_name} ***\n\n")
+for item in to_write:
+    text_file.write(item)
+    text_file.write("\n\n")
 
-text_file.write(variable_txt)
-
+# Close file
 text_file.close()
+
+# Printing
+for item in to_write:
+    print(item)
+    print()
