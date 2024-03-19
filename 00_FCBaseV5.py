@@ -161,14 +161,14 @@ def profit_goal(total_costs):
             dollar_type = yes_no(F"Do you mean ${amount:.2f}, example: ${amount:.2f} dollars?: ")
 
             # Set profit type based on users answer above
-            if dollar_type == "yes":
+            if dollar_type == "yes" or "y":
                 profit = "$"
             else:
                 profit_type = "%"
 
         elif profit_type == "unknown" and amount < 100:
-            percent_type = yes_no(F"Do you mean %{amount:.2f}? (Yes/No): ")
-            if percent_type =="yes":
+            percent_type = yes_no(F"Do you mean {amount:.2f}%? (Yes/No): ")
+            if percent_type =="yes" or "y":
                 profit_type = "%"
             else:
                 profit_type = "$"
@@ -208,6 +208,9 @@ variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
+# Change frames to string
+variable_txt = pandas.DataFrame.to_string(variable_frame)
+
 print()
 have_fixed = yes_no ("Do you have fixed costs?: ")
 
@@ -216,6 +219,8 @@ if have_fixed == "yes" or have_fixed == "y":
     fixed_expenses = get_expenses("fixed")
     fixed_frame = fixed_expenses[0]
     fixed_sub = fixed_expenses[1]
+
+    fixed_txt = pandas.DataFrame.to_string(fixed_frame)
 
 else:
     fixed_sub = 0
@@ -257,3 +262,23 @@ print()
 print("*** Pricing ***")
 print(F"Minimum price: ${selling_price:.2f}")
 print(F"Recomended price: ${recommended_price:.2f}")
+
+to_write = [product_name, variable_txt, fixed_txt, profit_target, required_sales, recommended_price]
+
+# Write to file
+# Create file to hold data
+file_name = F"{product_name}.txt"
+text_file = open(file_name, "w+")
+
+# Heading
+for item in to_write:
+    text_file.write(item)
+    text_file.write("\n\n")
+
+# Close file
+text_file.close()
+
+# Printing
+for item in to_write:
+    print(item)
+    print()

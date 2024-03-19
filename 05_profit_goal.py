@@ -24,7 +24,8 @@ def profit_goal(total_costs):
     while not valid:
         
         # Ask for profit goal
-        response = input("What is your profit goal?: ")
+        print()
+        response = input("What is your profit goal? (eg $500 or 50%): ")
 
         # Check if first charecter is $
         if response[0] == "$":
@@ -58,14 +59,14 @@ def profit_goal(total_costs):
             dollar_type = yes_no(F"Do you mean ${amount:.2f}, example: ${amount:.2f} dollars?: ")
 
             # Set profit type based on users answer above
-            if dollar_type == "yes":
+            if dollar_type == "yes" or "y":
                 profit = "$"
             else:
                 profit_type = "%"
 
         elif profit_type == "unknown" and amount < 100:
-            percent_type = yes_no(F"Do you mean %{amount:.2f}? (Yes/No): ")
-            if percent_type =="yes":
+            percent_type = yes_no(F"Do you mean {amount:.2f}% ? (Yes/No): ")
+            if percent_type =="yes" or "y":
                 profit_type = "%"
             else:
                 profit_type = "$"
