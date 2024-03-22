@@ -161,14 +161,14 @@ def profit_goal(total_costs):
             dollar_type = yes_no(F"Do you mean ${amount:.2f}, example: ${amount:.2f} dollars?: ")
 
             # Set profit type based on users answer above
-            if dollar_type == "yes" or "y":
-                profit = "$"
+            if dollar_type == "yes":
+                profit_type = "$"
             else:
                 profit_type = "%"
 
         elif profit_type == "unknown" and amount < 100:
             percent_type = yes_no(F"Do you mean {amount:.2f}%? (Yes/No): ")
-            if percent_type =="yes" or "y":
+            if percent_type =="yes":
                 profit_type = "%"
             else:
                 profit_type = "$"
@@ -192,8 +192,8 @@ if want_instructions == "yes" or want_instructions == "y":
     print()
     print("--- Instructions ---")
     print()
-    print("The fundraising claculator can be used to find if you have reached a porfit goal ")
-    print("You will need to provide the product name, item name, quantity, price")
+    print("The fundraising claculator can be used to find if you have reached a profit goal ")
+    print("You will need to provide the product name, how many items you will be producing, item name, quantity, price")
     print("Fixed costs are also optional after you have finished your variable costs")
     print()
     
@@ -262,6 +262,8 @@ print()
 print("*** Pricing ***")
 print(F"Minimum price: ${selling_price:.2f}")
 print(F"Recomended price: ${recommended_price:.2f}")
+
+required_sales = "$200.00"
 
 to_write = [product_name, variable_txt, fixed_txt, profit_target, required_sales, recommended_price]
 
