@@ -224,6 +224,7 @@ if have_fixed == "yes" or have_fixed == "y":
 
 else:
     fixed_sub = 0
+    fixed_txt = ""
 
 # Work out total costs and profit target
 all_costs = variable_sub + fixed_sub
@@ -239,7 +240,7 @@ round_to = num_check("Round to nearest ...?: ", "Cant be 0", int)
 selling_price = sales_needed / how_many
 print(F"Selling price (unrounded): ${selling_price:.2f}")
 
-recommended_price = round_up(selling_price)
+recommended_price = round_up(selling_price, round_to)
 
 # Ask user for profit goal
 print()
