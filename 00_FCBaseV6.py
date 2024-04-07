@@ -251,7 +251,7 @@ if have_fixed == "yes":
     fixed_heading_txt = fixed_strings[0]
     fixed_frame_txt = fixed_strings[1]
     fixed_sub_total_txt = fixed_strings[2]
-    fixed_sub_txt = F"Total fixed costs: {fixed_sub}"
+    fixed_sub_txt = F"Total fixed costs: ${fixed_sub}"
 
 else: 
     fixed_heading_txt = ""
@@ -260,7 +260,7 @@ else:
     fixed_sub_txt = ""
 
 # Create the subtotal statements to put in the to write list
-variable_sub_txt = F"Total variable costs: {variable_sub}"
+variable_sub_txt = F"Total variable costs: ${variable_sub}"
 
 # Create the pricing statements to put in the to write list
 pricing_heading = "*** Pricing ***"
@@ -271,10 +271,6 @@ min_price_txt = F"Minimum price: ${selling_price:.2f}"
 recommended_price_txt = F"=== Recomended price: ${recommended_price:.2f} ==="
 
 to_write = [heading_txt, variable_heading_txt, variable_frame_txt, variable_sub_txt, fixed_heading_txt, fixed_frame_txt, fixed_sub_txt, pricing_heading, total_costs_txt, profit_target_txt, sales_needed_txt, min_price_txt, recommended_price_txt]
-
-# check data types in list
-for item in to_write:
-    print(item)
 
 # Write to file
 # Create file to hold data
